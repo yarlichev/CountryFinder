@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
@@ -19,7 +20,7 @@ import java.util.Calendar;
 import java.util.List;
 
 @Component
-public class DatabaseInitializer {
+public class DatabaseInitializer  implements CommandLineRunner {
     private static final Logger LOG = LoggerFactory.getLogger(DatabaseInitializer.class);
     private static final DatabaseState AVAILABLE_STATE = DataBaseStateFactory.getAvailableState();
     private static final DatabaseState NOT_AVAILABLE_STATE = DataBaseStateFactory.getNotAvailableState();
@@ -29,7 +30,7 @@ public class DatabaseInitializer {
     private final CountryCodeService codeService;
     private final DatabaseStateService stateService;
     private final SourceDocumentService sourceDocumentService;
-    private static boolean wasStartedBefore = false;
+
 
     @Autowired
     public DatabaseInitializer(CountryCodeService codeService, DatabaseStateService stateService, SourceDocumentService documentService) {
@@ -38,10 +39,11 @@ public class DatabaseInitializer {
         this.sourceDocumentService = documentService;
     }
 
-    @EventListener(condition = "#root.wasStartedBefore == false")
     @Transactional
-    public void onApplicationEvent(ContextRefreshedEvent event) {
+    @Override
+    public void run(String...args) throws Exception {
         LOG.info("Application context started. Starting DB initialization...");
+
         try {
             List<CountryCode> allCodes = sourceDocumentService.getAllCountryCodes();
             if(allCodes == null || allCodes.isEmpty()) {
@@ -53,7 +55,6 @@ public class DatabaseInitializer {
             LOG.error("Failed to init DB", e);
             handleNoDataCase();
         }
-        wasStartedBefore = true;
     }
 
     @Transactional

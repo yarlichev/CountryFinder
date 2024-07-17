@@ -42,6 +42,9 @@ public class UniversalController {
     @GetMapping("/countryCode")
     public CountryCodesDTO countryCode(@RequestParam(name="number") String countryCode) {
         List<CountryCode> codes = countryCodeService.getSuitableCountryCodes(countryCode);
+        if (codes == null) {
+            codes = List.of();
+        }
         return new CountryCodesDTO(codes);
     }
 
