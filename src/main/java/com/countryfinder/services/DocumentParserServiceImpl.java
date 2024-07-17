@@ -46,10 +46,18 @@ public class DocumentParserServiceImpl implements DocumentParserService {
     }
 
     private Element findPhoneCodesTable(Document document) {
-        Elements tables = document.select(TABLE_TAG_NAME);
-        for (Element table : tables) {
-            if (isProperTable(table)) {
-                return table;
+        Element findByName = document.select("h2:has(span#Alphabetical_order)").first();
+
+        if (findByName != null) {
+
+            // Traverse sibling elements until we find a table
+            Element nextElement = findByName.nextElementSibling();
+            while (nextElement != null) {
+                if (nextElement.tagName().equals("table")
+                        && isProperTable(nextElement)) {
+                    return nextElement;
+                }
+                nextElement = nextElement.nextElementSibling();
             }
         }
         return null;
