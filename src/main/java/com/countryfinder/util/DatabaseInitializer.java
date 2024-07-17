@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+import org.springframework.util.CollectionUtils;
 
 import java.util.Calendar;
 import java.util.List;
@@ -44,19 +45,20 @@ public class DatabaseInitializer  implements CommandLineRunner {
 
         try {
             List<CountryCode> allCodes = sourceDocumentService.getAllCountryCodes();
-            if(allCodes == null || allCodes.isEmpty()) {
+
+            if(CollectionUtils.isEmpty(allCodes)) {
                 LOG.error("No codes found");
                 handleNoDataCase();
+            } else {
+                addCodesToDataBase(allCodes);
             }
-            addCodesToDataBase(allCodes);
         } catch (Exception e) {
             LOG.error("Failed to init DB", e);
             handleNoDataCase();
         }
     }
 
-    @Transactional
-    protected void addCodesToDataBase(List<CountryCode> allCodes) {
+    private void addCodesToDataBase(List<CountryCode> allCodes) {
         codeService.clearCountryCodes();
         codeService.addAllCountryCodes(allCodes);
         stateService
@@ -65,8 +67,8 @@ public class DatabaseInitializer  implements CommandLineRunner {
         stateService.saveState(AVAILABLE_STATE);
     }
 
-    @Transactional
-    protected void handleNoDataCase() {
+
+    private void handleNoDataCase() {
         DatabaseState lastUpdateState = stateService.findState(DbStateName.LAST_UPDATE_DATE);
 
         if(lastUpdateState == null || isDataExpired(lastUpdateState.getStateValue())) {
@@ -78,16 +80,14 @@ public class DatabaseInitializer  implements CommandLineRunner {
 
     //if data is expired mark that app is not available
     //and clear expired data
-    @Transactional
-    protected void handleDataExpired() {
+    private void handleDataExpired() {
         stateService.saveState(NOT_AVAILABLE_STATE);
         stateService.removeState(DbStateName.LAST_UPDATE_DATE);
         codeService.clearCountryCodes();
     }
 
     //if we have non-expired data, lets use it and mark our app as available
-    @Transactional
-    protected void handleDataNotExpired() {
+    private void handleDataNotExpired() {
         stateService.saveState(AVAILABLE_STATE);
     }
 
