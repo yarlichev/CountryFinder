@@ -35,8 +35,6 @@ public class DatabaseStateServiceImpl implements DatabaseStateService{
         return dao.findById(stateName).orElse(null);
     }
 
-
-
     @Override
     public void clear() {
         dao.deleteAll();

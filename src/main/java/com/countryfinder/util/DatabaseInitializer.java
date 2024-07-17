@@ -39,7 +39,7 @@ public class DatabaseInitializer  implements CommandLineRunner {
 
     @Transactional
     @Override
-    public void run(String...args) throws Exception {
+    public void run(String...args) {
         LOG.info("Application context started. Starting DB initialization...");
 
         try {

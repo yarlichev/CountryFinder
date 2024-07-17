@@ -19,7 +19,7 @@ public interface CountryCodeDao extends CrudRepository<CountryCode, String> {
             "WHERE FUNCTION('SUBSTRING', :number, 1, FUNCTION('LENGTH', CAST(c.code AS string))) = CAST(c.code AS string)";
 
     @Query(queryMax)
-    Integer searchCodeByPhoneNumber(@Param("number") String number);
+    Integer searchMaxCodeLength(@Param("number") String number);
 
     // then we again search for all codes which are first digits of the number
     // but choose only codes with length == max
@@ -29,5 +29,5 @@ public interface CountryCodeDao extends CrudRepository<CountryCode, String> {
             " AND FUNCTION('SUBSTRING', :number, 1, FUNCTION('LENGTH', CAST(c.code AS string))) = CAST(c.code AS string)";
 
     @Query(queryCode)
-    List<CountryCode> searchByMax(@Param("max") Integer max, @Param("number") String number);
+    List<CountryCode> searchCodeByPhoneNumberAndLength(@Param("max") Integer length, @Param("number") String number);
 }

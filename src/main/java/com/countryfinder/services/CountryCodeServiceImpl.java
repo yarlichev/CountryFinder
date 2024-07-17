@@ -38,12 +38,12 @@ public class CountryCodeServiceImpl implements CountryCodeService {
         }
         //remove + and space from phone number string
         String handledNumber = number.replaceAll("[+ ]", "");
-        Integer max = codesDao.searchCodeByPhoneNumber(handledNumber);
+        Integer max = codesDao.searchMaxCodeLength(handledNumber);
 
         if(max == null){
             return List.of();
         }
-        return codesDao.searchByMax(max, number);
+        return codesDao.searchCodeByPhoneNumberAndLength(max, number);
     }
 
     @Override
