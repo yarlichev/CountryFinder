@@ -3,6 +3,8 @@ package com.countryfinder.models;
 import com.countryfinder.models.enums.DbStateName;
 import jakarta.persistence.*;
 
+import java.util.Objects;
+
 @Entity
 @Table(name="database_state")
 public class DatabaseState {
@@ -28,5 +30,24 @@ public class DatabaseState {
 
     public String getStateValue() {
         return stateValue;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o instanceof DatabaseState) {
+            return false;
+        }
+
+        DatabaseState that = (DatabaseState) o;
+
+        return stateName == that.stateName && Objects.equals(stateValue, that.stateValue);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(stateName, stateValue);
     }
 }

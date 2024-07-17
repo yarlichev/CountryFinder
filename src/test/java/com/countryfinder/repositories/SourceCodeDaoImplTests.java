@@ -77,7 +77,7 @@ public class SourceCodeDaoImplTests {
         Document doc = Jsoup.parse(in, null);
         DocumentParserServiceImpl parser = new DocumentParserServiceImpl();
         List<CountryCode> codes = new ArrayList<>();
-        Executable executable = () -> codes.addAll(parser.getPhoneCodesAndCountries(doc));
+        Executable executable = () -> codes.addAll(parser.parsePhoneCodesAndCountries(doc));
 
         assertDoesNotThrow(executable);
 
@@ -101,7 +101,7 @@ public class SourceCodeDaoImplTests {
         DocumentParserService parser = new DocumentParserServiceImpl();
         SourceDocumentDao dao = new SourceDocumentDaoImpl();
 
-        Executable executable = () -> parser.getPhoneCodesAndCountries(dao.uploadDocument(sourceUrl));
+        Executable executable = () -> parser.parsePhoneCodesAndCountries(dao.uploadDocument(sourceUrl));
         assertDoesNotThrow(executable);
     }
 
