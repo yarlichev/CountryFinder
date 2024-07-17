@@ -21,7 +21,7 @@ public class DatabaseStateServiceImpl implements DatabaseStateService{
     }
 
     @Override
-    public DatabaseState getAvailabilltyState() {
+    public DatabaseState getAvailabilityState() {
         return dao.findById(DbStateName.AVAILABILITY_STATUS).orElse(null);
     }
 

@@ -38,15 +38,12 @@ public class DatabaseInitializer {
         this.sourceDocumentService = documentService;
     }
 
-    @EventListener
+    @EventListener(condition = "#root.wasStartedBefore == false")
     @Transactional
     public void onApplicationEvent(ContextRefreshedEvent event) {
-        if (wasStartedBefore) {
-            return;
-        }
         LOG.info("Application context started. Starting DB initialization...");
         try {
-            List<CountryCode> allCodes = sourceDocumentService.getCountryCodes();
+            List<CountryCode> allCodes = sourceDocumentService.getAllCountryCodes();
             if(allCodes == null || allCodes.isEmpty()) {
                 LOG.error("No codes found");
                 handleNoDataCase();

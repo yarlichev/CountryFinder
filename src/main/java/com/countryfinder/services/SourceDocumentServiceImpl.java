@@ -24,9 +24,9 @@ public class SourceDocumentServiceImpl implements SourceDocumentService {
     }
 
     @Override
-    public List<CountryCode> getCountryCodes() throws Exception {
+    public List<CountryCode> getAllCountryCodes() throws Exception {
         Document uploadedPage = uploader.uploadDocument(sourcePageUrl);
-        List<CountryCode> phonesAndCountries = parser.getPhoneCodesAndCountries(uploadedPage);
+        List<CountryCode> phonesAndCountries = parser.parsePhoneCodesAndCountries(uploadedPage);
         return phonesAndCountries;
     }
 }

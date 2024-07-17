@@ -3,7 +3,7 @@ package com.countryfinder.services;
 import com.countryfinder.models.CountryCode;
 import java.util.List;
 
-
+// Service to upload data from external source
 public interface SourceDocumentService {
-    List<CountryCode> getCountryCodes() throws Exception;
+    List<CountryCode> getAllCountryCodes() throws Exception;
 }

@@ -30,7 +30,7 @@ public class UniversalController {
 
     @GetMapping("/status")
     public DatabaseState status() {
-        DatabaseState state = dbStateService.getAvailabilltyState();
+        DatabaseState state = dbStateService.getAvailabilityState();
 
         if (state == null) {
             return DataBaseStateFactory.getNotAvailableState();

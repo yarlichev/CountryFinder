@@ -5,7 +5,8 @@ import org.jsoup.nodes.Document;
 
 import java.util.List;
 
+//Service for html document parsing
 public interface DocumentParserService {
 
-    List<CountryCode> getPhoneCodesAndCountries(Document document) throws Exception;
+    List<CountryCode> parsePhoneCodesAndCountries(Document document) throws Exception;
 }

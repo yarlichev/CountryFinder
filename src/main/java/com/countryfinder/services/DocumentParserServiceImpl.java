@@ -30,7 +30,7 @@ public class DocumentParserServiceImpl implements DocumentParserService {
     Logger LOG = LoggerFactory.getLogger(DocumentParserServiceImpl.class);
 
     @Override
-    public List<CountryCode> getPhoneCodesAndCountries(Document document) throws Exception {
+    public List<CountryCode> parsePhoneCodesAndCountries(Document document) throws Exception {
         if (document == null) {
             LOG.error("Document is null");
             throw new Exception("Document is null");
