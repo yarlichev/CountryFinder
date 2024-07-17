@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class DatabaseStateServiceImpl implements DatabaseStateService{
-    private DatabaseStateDao dao;
+    private final DatabaseStateDao dao;
 
     @Autowired
     public DatabaseStateServiceImpl(DatabaseStateDao dao) {

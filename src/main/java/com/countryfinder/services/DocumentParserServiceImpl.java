@@ -25,9 +25,9 @@ public class DocumentParserServiceImpl implements DocumentParserService {
 
     //first should be several digits, then round brackets with one or several
     //numbers, divided by space and ,
-    final String CODE_COLUMN_NUMBER_PATTERN = "\\d+ ?(\\(\\d+(, +\\d+)*\\))?";
-    final String CODE_COLUMN_COMMON_PATTERN = "[\\d a-zA-z,()]*";
-    Logger LOG = LoggerFactory.getLogger(DocumentParserServiceImpl.class);
+    private final String CODE_COLUMN_NUMBER_PATTERN = "\\d+ ?(\\(\\d+(, +\\d+)*\\))?";
+    private final String CODE_COLUMN_COMMON_PATTERN = "[\\d a-zA-z,()]*";
+    private final Logger LOG = LoggerFactory.getLogger(DocumentParserServiceImpl.class);
 
     @Override
     public List<CountryCode> parsePhoneCodesAndCountries(Document document) throws Exception {

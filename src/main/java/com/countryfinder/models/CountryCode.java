@@ -33,10 +33,9 @@ public class CountryCode {
 
     @Override
     public boolean equals(Object o) {
-        if (!(o instanceof CountryCode)) {
+        if (!(o instanceof CountryCode otherCode)) {
             return false;
         }
-        CountryCode other = (CountryCode) o;
-        return Objects.equals(this.code, other.code) && Objects.equals(this.country, other.country);
+        return Objects.equals(this.code, otherCode.code) && Objects.equals(this.country, otherCode.country);
     }
 }

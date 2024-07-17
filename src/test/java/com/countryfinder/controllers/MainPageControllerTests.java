@@ -17,9 +17,9 @@ public class MainPageControllerTests {
 
     @Test
     public void testMainPageEndpoint() throws Exception {
-//        final String MAIN_PAGE_ENDPOINT = "/";
-//        final String HTML =
-//        mockMvc.perform(get(MAIN_PAGE_ENDPOINT)).andExpect(status().isOk())
-//                .andExpect(content().contentType(JSON));
+        final String MAIN_PAGE_ENDPOINT = "/";
+        final String HTML = "text/html";
+        mockMvc.perform(get(MAIN_PAGE_ENDPOINT)).andExpect(status().isOk())
+                .andExpect(content().contentType(HTML));
     }
 }

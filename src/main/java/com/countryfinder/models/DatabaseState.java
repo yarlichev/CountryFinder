@@ -11,10 +11,10 @@ public class DatabaseState {
     @Id
     @Enumerated(EnumType.STRING)
     @Column(name="db_state_name")
-    DbStateName stateName;
+    private DbStateName stateName;
 
     @Column(name="state_value")
-    String stateValue;
+    private String stateValue;
 
     public DatabaseState(DbStateName stateName, String stateValue) {
         this.stateName = stateName;

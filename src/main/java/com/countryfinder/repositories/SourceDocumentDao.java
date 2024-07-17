@@ -7,5 +7,5 @@ import java.io.IOException;
 
 public interface SourceDocumentDao {
 
-    public Document uploadDocument(String sourceUrl) throws IOException;
+    Document uploadDocument(String sourceUrl) throws IOException;
 }

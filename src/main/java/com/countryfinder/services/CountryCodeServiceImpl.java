@@ -14,9 +14,9 @@ import java.util.List;
 @Service
 public class CountryCodeServiceImpl implements CountryCodeService {
 
-    private CountryCodeDao codesDao;
+    private final CountryCodeDao codesDao;
     public static final String PHONE_PATTERN = " *\\+?\\d{3,} *";
-    Logger LOG = LoggerFactory.getLogger(CountryCodeServiceImpl.class);
+    private final Logger LOG = LoggerFactory.getLogger(CountryCodeServiceImpl.class);
 
     @Autowired
     public CountryCodeServiceImpl(CountryCodeDao codesDao) {

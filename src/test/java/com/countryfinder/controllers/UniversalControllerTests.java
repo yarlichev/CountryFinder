@@ -35,7 +35,7 @@ public class UniversalControllerTests {
     private DatabaseStateService dbStateService;
 
     @Autowired
-    ObjectMapper mapper;
+    private ObjectMapper mapper;
 
     private static final String PHONE_NUMBER = "123456789";
     private static final String JSON = "application/json";

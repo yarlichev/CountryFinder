@@ -22,10 +22,9 @@ public class CountryCodeId {
 
     @Override
     public boolean equals(Object obj) {
-        if (!(obj instanceof CountryCodeId)) {
+        if (!(obj instanceof CountryCodeId other)) {
             return false;
         }
-        CountryCodeId other = (CountryCodeId) obj;
         return Objects.equals(this.code, other.code) && Objects.equals(this.country, other.country);
     }
 

@@ -28,11 +28,11 @@ import static org.junit.jupiter.api.Assertions.*;
 @ContextConfiguration(classes = SourceCodeDaoImplTests.Config.class)
 @TestPropertySource(locations="classpath:application-test.properties")
 public class SourceCodeDaoImplTests {
-    final String PROPER_PAGE = "src/test/resources/testPage.html";
+    private final String PROPER_PAGE = "src/test/resources/testPage.html";
 
     @Value("${countryFinder.source.url}")
-    String sourceUrl;
-    static List<CountryCode> expectedCodes;
+    private String sourceUrl;
+    private static List<CountryCode> expectedCodes;
 
     @BeforeAll
     public static void initExpectedPhoneCodesMap() {
