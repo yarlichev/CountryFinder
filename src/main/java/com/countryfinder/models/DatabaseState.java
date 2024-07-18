@@ -37,13 +37,11 @@ public class DatabaseState {
         if (this == o) {
             return true;
         }
-        if (o instanceof DatabaseState) {
+        if (!(o instanceof DatabaseState that)) {
             return false;
         }
 
-        DatabaseState that = (DatabaseState) o;
-
-        return stateName == that.stateName && Objects.equals(stateValue, that.stateValue);
+        return Objects.equals(stateName, that.stateName) && Objects.equals(stateValue, that.stateValue);
     }
 
     @Override

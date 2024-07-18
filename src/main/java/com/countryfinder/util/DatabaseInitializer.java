@@ -16,6 +16,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 @Component
@@ -63,7 +64,7 @@ public class DatabaseInitializer  implements CommandLineRunner {
         codeService.addAllCountryCodes(allCodes);
         stateService
                 .saveState(new DatabaseState(DbStateName.LAST_UPDATE_DATE,
-                        DataStringConverter.convertToString(Calendar.getInstance())));
+                        DateStringConverter.convertToString(Calendar.getInstance())));
         stateService.saveState(AVAILABLE_STATE);
     }
 
@@ -89,10 +90,19 @@ public class DatabaseInitializer  implements CommandLineRunner {
     //if we have non-expired data, lets use it and mark our app as available
     private void handleDataNotExpired() {
         stateService.saveState(AVAILABLE_STATE);
+        stateService.saveState(new DatabaseState(DbStateName.LAST_UPDATE_DATE,
+                DateStringConverter.convertToString(new GregorianCalendar())));
     }
 
     private boolean isDataExpired(String date) {
-        Calendar lastUpdate = DataStringConverter.convertToDate(date);
+
+        //-1 means data always valid
+        if (expirationDays == -1) {
+            return false;
+        }
+
+        Calendar lastUpdate = DateStringConverter.convertToDate(date);
+
         if (lastUpdate == null) {
             return false;
         }
