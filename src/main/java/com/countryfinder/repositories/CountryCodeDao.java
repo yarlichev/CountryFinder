@@ -1,6 +1,7 @@
 package com.countryfinder.repositories;
 
 import com.countryfinder.models.CountryCode;
+import com.countryfinder.models.CountryCodeId;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -9,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface CountryCodeDao extends CrudRepository<CountryCode, String> {
+public interface CountryCodeDao extends CrudRepository<CountryCode, CountryCodeId> {
 
 
     // first search for all codes which are first digits of the number
