@@ -2,7 +2,7 @@ package com.countryfinder.util;
 
 import java.util.Calendar;
 
-public class DataStringConverter {
+public class DateStringConverter {
     public final static String DATE_SEPARATOR_REGEX = "\\.";
 
     public static String convertToString(Calendar date){
