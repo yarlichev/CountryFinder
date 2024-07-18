@@ -17,3 +17,6 @@ To get test reports type:
 mnv clean test site
 
 Reports will be available in target/site/surefire-report.html
+
+To start application type:
+mvn spring-boot:run
