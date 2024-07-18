@@ -51,7 +51,7 @@ public class UniversalControllerTests {
         when(dbStateService.getAvailabilityState()).thenReturn(available);
         mockMvc.perform(get(STATUS_ENDPOINT)).andExpect(status().isOk())
                 .andExpect(content().contentType(JSON))
-                .andExpect(content().string(mapper.writeValueAsString(available)));
+                .andExpect(content().json(mapper.writeValueAsString(available)));
     }
 
     @Test
@@ -62,7 +62,7 @@ public class UniversalControllerTests {
         when(dbStateService.getAvailabilityState()).thenReturn(notAvailableState);
         mockMvc.perform(get(STATUS_ENDPOINT)).andExpect(status().isOk())
                 .andExpect(content().contentType(JSON))
-                .andExpect(content().string(mapper.writeValueAsString(notAvailableState)));
+                .andExpect(content().json(mapper.writeValueAsString(notAvailableState)));
     }
 
     @Test
@@ -78,7 +78,7 @@ public class UniversalControllerTests {
         when(countryCodeService.getSuitableCountryCodes(PHONE_NUMBER)).thenReturn(codesMock);
         mockMvc.perform(get(COUNTRY_CODE_ENDPOINT)).andExpect(status().isOk())
                 .andExpect(content().contentType(JSON))
-                .andExpect(content().string(mapper.writeValueAsString(expectedDto)));
+                .andExpect(content().json(mapper.writeValueAsString(expectedDto)));
     }
 
     @Test
@@ -89,6 +89,6 @@ public class UniversalControllerTests {
         when(countryCodeService.getSuitableCountryCodes(PHONE_NUMBER)).thenReturn(null);
         mockMvc.perform(get(COUNTRY_CODE_ENDPOINT)).andExpect(status().isOk())
                 .andExpect(content().contentType(JSON))
-                .andExpect(content().string(mapper.writeValueAsString(expectedDto)));
+                .andExpect(content().json(mapper.writeValueAsString(expectedDto)));
     }
 }

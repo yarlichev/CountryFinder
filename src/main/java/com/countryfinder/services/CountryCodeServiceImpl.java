@@ -43,7 +43,7 @@ public class CountryCodeServiceImpl implements CountryCodeService {
         if(max == null){
             return List.of();
         }
-        return codesDao.searchCodeByPhoneNumberAndLength(max, number);
+        return codesDao.searchCodeByPhoneNumberAndLength(max, handledNumber);
     }
 
     @Override
