@@ -11,6 +11,7 @@
     <groupId>com.countryfinder</groupId>
     <artifactId>CountryFinder</artifactId>
     <name>CountryFinder</name>
+    <version>1.0.0</version>
     <description>CountryFinder</description>
 
     <properties>
@@ -76,10 +77,9 @@
                 <plugin>
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-maven-plugin</artifactId>
-                    <configuration>
-                        <mainClass>com.countryfinder.
-                            ntryFinderApplication</mainClass>
-                    </configuration>
+                   <configuration>
+                       <mainClass>com.countryfinder.CountryFinderApplication</mainClass>
+                   </configuration>
                 </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
