@@ -8,10 +8,13 @@ country a phone number belongs to. This application can:
 3. In case of failed wiki page parsing, application can use old data, if it is not expired (expiration period specified in application.properties)
 4. If there is no valid data users can see a warning message on a main page. 
 
-To for successful building, compilation and testing, please you have
+To for successful building, compilation and testing, please make sure you have
 1. Java 17+
 2. Configured JAVA_HOME (Java 17+)
 3. Docker (To start container for test AvailableAppScenario IT). Otherwise, disable the test
+4. An instance of Postgresql DB. 
+
+Before start add DB credentials to application.properties.
 
 To get test reports type:
 mnv clean test site
